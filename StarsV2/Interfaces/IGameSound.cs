@@ -5,5 +5,6 @@
         void StartBackground();
         void StopBackground();
         void ShootPlay();
+        void PlayLose();
     }
 }

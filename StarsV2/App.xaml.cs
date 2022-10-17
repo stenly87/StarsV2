@@ -1,4 +1,5 @@
 ﻿using StarsV2.Interfaces;
+using StarsV2.Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,14 +20,15 @@ namespace StarsV2
             base.OnStartup(e);
 
             IGameUI ui = null;
-            IGameTimer timer = null;
-            IGameSound sound = null;
-            IGameController controller = null;
             IGameField gameField = null;
-            IGameEnemyFactory gameEnemyFactory = null;
+            IGameTimer timer = new GameTimer();
+            IGameSound sound = new GameSound();               
+            IGameController controller = new GameController();
+            IGameEnemyFactory gameEnemyFactory = new GameEnemyFactory();
             IBulletFactory bulletFactory = null;
             IPlayer player = null;
             IGameScoreManager gameScoreManager = null;
+            
             IGameCore core = new GameCore(
                 controller, 
                 ui,
@@ -37,6 +39,7 @@ namespace StarsV2
                 sound,
                 player,
                 gameScoreManager);
+
             core.Start();
         }
     }

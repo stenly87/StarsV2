@@ -38,6 +38,7 @@ namespace StarsV2.Model
             timer.Stop();
             ui.ShowGameOver();
             sound.StopBackground();
+            sound.PlayLose();
         }
 
         private void GameField_OnIntersect(object sender, (IGameObject, IGameObject) e)

@@ -2,5 +2,6 @@
 {
     internal interface IGameObject
     {
+        bool IsOnField { get; }
     }
 }

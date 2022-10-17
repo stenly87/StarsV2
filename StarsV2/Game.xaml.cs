@@ -87,15 +87,12 @@ namespace StarsV2
                 Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
             }
 
-
             foreach (var x in Canva.Children.OfType<Rectangle>())
             {
                 if (x is Rectangle && (string)x.Tag == "bullet")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) - 20);
-
                     Rect bulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-
                     if (Canvas.GetTop(x) < 10)
                     {
                         itemRemover.Add(x);
@@ -106,7 +103,6 @@ namespace StarsV2
                         if (y is Rectangle && (string)y.Tag == "enemy")
                         {
                             Rect enemyHit = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
-
                             if (bulletHitBox.IntersectsWith(enemyHit))
                             {
                                 itemRemover.Add(x);
@@ -115,26 +111,21 @@ namespace StarsV2
                             }
                         }
                     }
-
                 }
 
                 if (x is Rectangle && (string)x.Tag == "enemy")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) + enemySpeed);
-
                     if (Canvas.GetTop(x) > 750)
                     {
                         itemRemover.Add(x);
                     }
-
                     Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                    
                     if (playerHitBox.IntersectsWith(enemyHitBox))
                     {
                         itemRemover.Add(x);
                         damage += 5;
                     }
-
                 }
             }
 
@@ -142,8 +133,6 @@ namespace StarsV2
             {
                 Canva.Children.Remove(i);
             }
-
-            
 
             if (damage > 99)
             {

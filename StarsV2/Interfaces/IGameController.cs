@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 
 namespace StarsV2.Interfaces
 {
@@ -6,5 +7,7 @@ namespace StarsV2.Interfaces
     {
         event EventHandler OnShoot;
         event EventHandler<MoveDirection> OnDirectionChanged;
+
+        void KeyPressed(Key key, bool pressed);
     }
 }
