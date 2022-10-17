@@ -22,7 +22,6 @@ namespace StarsV2
         public GameMenu()
         {
             InitializeComponent();
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,7 +31,5 @@ namespace StarsV2
             skins.Show();
             Close();
         }
-
-        
     }
 }

@@ -86,7 +86,6 @@ namespace StarsV2
                 Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
             }
 
-
             foreach (var x in Canva.Children.OfType<Rectangle>())
             {
                 if (x is Rectangle && (string)x.Tag == "bullet")
@@ -114,7 +113,6 @@ namespace StarsV2
                             }
                         }
                     }
-
                 }
 
                 if (x is Rectangle && (string)x.Tag == "enemy")

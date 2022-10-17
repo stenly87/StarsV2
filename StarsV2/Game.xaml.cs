@@ -34,14 +34,14 @@ namespace StarsV2
         Random rand = new Random();
         
         bool moveLeft, moveRight;
-        int enemySpriteCounter = 0;
+        int enemySpriteCount = 6;
         int enemyCounter = 100;
         int playerSpeed = 10;
+        int enemySpeed = 10;
         int limit = 50;
         int score = 0;
         int damage = 0;
-        int enemySpeed = 10;
-
+       
         Rect playerHitBox;
         public Game()
         {
@@ -61,8 +61,8 @@ namespace StarsV2
             ImageBrush playerImage = new ImageBrush();
             playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Sprites/korabl.png"));
             player.Fill = playerImage;
-            
         }
+
         private void GameLoop(object sender, EventArgs e)
         {
             playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
@@ -78,11 +78,11 @@ namespace StarsV2
                 enemyCounter = limit;
             }
 
-            if (moveLeft == true && Canvas.GetLeft(player) > 0)
+            if (moveLeft && Canvas.GetLeft(player) > 0)
             {
                 Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
             }
-            if (moveRight == true && Canvas.GetLeft(player) + 90 < Application.Current.MainWindow.Width)
+            if (moveRight && Canvas.GetLeft(player) + 90 < Application.Current.MainWindow.Width)
             {
                 Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
             }
@@ -128,7 +128,7 @@ namespace StarsV2
                     }
 
                     Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-
+                    
                     if (playerHitBox.IntersectsWith(enemyHitBox))
                     {
                         itemRemover.Add(x);
@@ -216,10 +216,7 @@ namespace StarsV2
         private void MakeEnemies()
         {
             ImageBrush enemySprite = new ImageBrush();
-
-            enemySpriteCounter = rand.Next(1, 5);
-
-            switch (enemySpriteCounter)
+            switch (rand.Next(1, enemySpriteCount))
             {
                 case 1:
                     enemySprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Sprites/met1.png"));
@@ -255,13 +252,11 @@ namespace StarsV2
         {
             Rectangle newBullet = new Rectangle
             {
-
                 Tag = "bullet",
                 Height = 20,
                 Width = 5,
                 Fill = Brushes.White,
                 Stroke = Brushes.Red
-
             };
             
             Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2);
@@ -269,7 +264,5 @@ namespace StarsV2
 
             Canva.Children.Add(newBullet);
         }
-
-       
     }
 }
