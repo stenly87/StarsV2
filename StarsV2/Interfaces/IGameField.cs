@@ -1,4 +1,5 @@
 ﻿
+using StarsV2.Model;
 using System;
 
 namespace StarsV2.Interfaces
@@ -13,5 +14,9 @@ namespace StarsV2.Interfaces
         event EventHandler<(IGameObject, IGameObject)> OnIntersect;
 
         void RemoveObject(IGameObject enemy);
+        void ClearObjects();
+
+        int Width { get; set; }
+        int Height { get; set; }
     }
 }

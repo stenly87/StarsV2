@@ -19,15 +19,15 @@ namespace StarsV2
         {
             base.OnStartup(e);
 
-            IGameUI ui = null;
-            IGameField gameField = null;
+            IGameUI ui = new GameUI();
+            IGameField gameField = new GameField();
             IGameTimer timer = new GameTimer();
             IGameSound sound = new GameSound();               
             IGameController controller = new GameController();
-            IGameEnemyFactory gameEnemyFactory = new GameEnemyFactory();
-            IBulletFactory bulletFactory = null;
-            IPlayer player = null;
-            IGameScoreManager gameScoreManager = null;
+            IGameObjectFactory gameEnemyFactory = new GameEnemyFactory();
+            IGameObjectFactory bulletFactory = new BulletFactory();
+            IPlayer player = new Player();
+            IGameScoreManager gameScoreManager = new GameScoreManager();
             
             IGameCore core = new GameCore(
                 controller, 

@@ -5,8 +5,10 @@ namespace StarsV2.Interfaces
     internal interface IGameUI
     {
         event EventHandler Ready;
+        event EventHandler<int> OnLevelChanged;
 
-        void Init(IGameController controller, IPlayer player, IGameField gameField, IGameScoreManager gameScoreManager);
+        void SetLevel(int level);
+        void Init(IGameController controller, IGameField gameField, IGameScoreManager gameScoreManager);
         void ShowGameOver();
     }
 }

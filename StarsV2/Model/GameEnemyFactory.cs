@@ -1,22 +1,21 @@
 ﻿
 using StarsV2.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace StarsV2.Model
 {
-    internal class GameEnemyFactory : IGameEnemyFactory
+    internal class GameEnemyFactory : GameObjectFactory
     {
-        List<IEnemy> enemies = new List<IEnemy>();
+        Random random = new Random();
 
-        public IEnemy CreateEnemy()
+        protected override IGameObject CreateEnemy()
         {
-            var enemy  = enemies.FirstOrDefault(s => !s.IsOnField);
-            if (enemy != null)
-                return enemy;
-            enemy = new GameEnemy();
-            enemies.Add(enemy);
-            return enemy;
+            int indexImage = random.Next(1, 6);
+            string imagePath = $"{Environment.CurrentDirectory}/Sprites/met{indexImage}.png";
+            int damageScore = random.Next(1, 10);
+            return new GameEnemy(damageScore, damageScore, imagePath);
         }
     }
 }

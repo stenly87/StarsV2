@@ -120,7 +120,10 @@ namespace StarsV2
                     {
                         itemRemover.Add(x);
                     }
-                    Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    Rect enemyHitBox = new Rect(Canvas.GetLeft(x),
+                        Canvas.GetTop(x), 
+                        x.Width, 
+                        x.Height);
                     if (playerHitBox.IntersectsWith(enemyHitBox))
                     {
                         itemRemover.Add(x);

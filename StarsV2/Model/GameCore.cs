@@ -8,14 +8,14 @@ namespace StarsV2.Model
         private IGameController controller;
         private IGameUI ui;
         private IGameField gameField;
-        private IGameEnemyFactory gameEnemyFactory;
-        private IBulletFactory bulletFactory;
+        private IGameObjectFactory gameEnemyFactory;
+        private IGameObjectFactory bulletFactory;
         private IGameTimer timer;
         private IGameSound sound;
         IPlayer player;
         private IGameScoreManager gameScoreManager;
 
-        public GameCore(IGameController controller, IGameUI ui, IGameField gameField, IGameEnemyFactory gameEnemyFactory, IBulletFactory bulletFactory, IGameTimer timer, IGameSound sound, IPlayer player, IGameScoreManager gameScoreManager)
+        public GameCore(IGameController controller, IGameUI ui, IGameField gameField, IGameObjectFactory gameEnemyFactory, IGameObjectFactory bulletFactory, IGameTimer timer, IGameSound sound, IPlayer player, IGameScoreManager gameScoreManager)
         {
             this.controller = controller;
             this.ui = ui;
@@ -37,6 +37,8 @@ namespace StarsV2.Model
         {
             timer.Stop();
             ui.ShowGameOver();
+            gameScoreManager.Clear();
+            gameField.ClearObjects();
             sound.StopBackground();
             sound.PlayLose();
         }
@@ -66,14 +68,20 @@ namespace StarsV2.Model
         private void MakeBullet(object sender, EventArgs e)
         {
             sound.ShootPlay();
-            IBullet bullet = bulletFactory.MakeBullet(player);
+            Point bulletPosition = new Point
+            {
+                X = player.Position.X + player.Width / 2,
+                Y = player.Position.Y
+            };
+            IGameObject bullet = bulletFactory.CreateObject();
+            bullet.Position = bulletPosition;
             gameField.AddObject(bullet);
         }
 
         public void Start()
         {
             ui.Ready += Ui_Ready;
-            ui.Init(controller, player, gameField, gameScoreManager);
+            ui.Init(controller, gameField, gameScoreManager);
         }
 
         private void Ui_Ready(object sender, EventArgs e)
@@ -82,6 +90,7 @@ namespace StarsV2.Model
             timer.Init(GameLoop);
             timer.Start();
             gameField.Init();
+            player.Init();
             gameField.AddObject(player);
         }
 
@@ -91,7 +100,7 @@ namespace StarsV2.Model
             gameField.MoveObjects();
             if (gameField.CountEnemies() < 20 && ++countTick % 5 == 0)
             {
-                gameField.AddObject(gameEnemyFactory.CreateEnemy());
+                gameField.AddObject(gameEnemyFactory.CreateObject());
                 countTick = 0;
             }
         }
