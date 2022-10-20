@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StarsV2.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace StarsV2.View
     public partial class Win : Window, INotifyPropertyChanged
     {
         private Page currentPage;
-        private GameUI gameUI;
+        private GameUIWPF gameUI;
 
         public Page CurrentPage
         {
@@ -34,7 +35,7 @@ namespace StarsV2.View
             }
         }
         
-        internal Win(GameUI gameUI)
+        internal Win(GameUIWPF gameUI)
         {
             InitializeComponent();
             LevelSelector ls = new LevelSelector();
@@ -48,6 +49,12 @@ namespace StarsV2.View
         {
             CurrentPage = new PageGame(gameUI);
             gameUI.SetLevel(level);
+            gameUI.DrawInit();
+        }
+
+        private void SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            gameUI.SetFieldSize(e.NewSize);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -56,7 +63,6 @@ namespace StarsV2.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-
     }
 
 }

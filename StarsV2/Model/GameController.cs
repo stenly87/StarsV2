@@ -1,5 +1,6 @@
 ﻿using StarsV2.Interfaces;
 using System;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace StarsV2.Model
@@ -9,11 +10,20 @@ namespace StarsV2.Model
         public event EventHandler OnShoot;
         public event EventHandler<MoveDirection> OnDirectionChanged;
 
+        long lastInputTime = 0;
         public void KeyPressed(Key key, bool pressed)
         {
+            if (pressed)
+            {
+                long currentTime = Stopwatch.GetTimestamp();
+                if (currentTime - lastInputTime < 2500000)
+                    return;
+                lastInputTime = currentTime;
+            }
             switch (key)
             {
                 case Key.Left:
+
                     OnDirectionChanged?.Invoke(this,
                         pressed ? 
                         MoveDirection.MoveLeft :

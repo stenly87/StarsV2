@@ -9,6 +9,6 @@
         Height="450" Width="800" 
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>
+        <Frame Content="{Binding CurrentPage}" SizeChanged="SizeChanged" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

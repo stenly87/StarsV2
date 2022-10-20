@@ -1,23 +1,30 @@
 ﻿using StarsV2.Interfaces;
 using System;
 using System.Media;
+using System.Windows.Media;
 
 namespace StarsV2
 {
     internal class GameSound : IGameSound
     {
-        SoundPlayer back;
+        MediaPlayer back;
         SoundPlayer shoot;
         SoundPlayer lose;
 
         public GameSound()
         {
-            back = new SoundPlayer(Environment.CurrentDirectory + "/Music/musiclvl2.wav");
+            back = new MediaPlayer();
             shoot = new SoundPlayer(Environment.CurrentDirectory + "/Music/shoot.wav");
             lose = new SoundPlayer(Environment.CurrentDirectory + "/Music/Lose1.wav");
-            back.Load();
+            back.Open(new Uri(Environment.CurrentDirectory + "/Music/musiclvl2.wav"));
             shoot.Load();
             lose.Load();
+            back.MediaEnded += Back_MediaEnded;
+        }
+
+        private void Back_MediaEnded(object sender, EventArgs e)
+        {
+            //back.Play();
         }
 
         public void PlayLose()
@@ -32,7 +39,7 @@ namespace StarsV2
 
         public void StartBackground()
         {
-            back.PlayLooping();
+            back.Play();
         }
 
         public void StopBackground()

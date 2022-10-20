@@ -19,7 +19,7 @@ namespace StarsV2
         {
             base.OnStartup(e);
 
-            IGameUI ui = new GameUI();
+            IGameUI ui = new GameUIWPF();
             IGameField gameField = new GameField();
             IGameTimer timer = new GameTimer();
             IGameSound sound = new GameSound();               

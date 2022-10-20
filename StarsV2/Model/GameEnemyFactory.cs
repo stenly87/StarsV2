@@ -14,7 +14,7 @@ namespace StarsV2.Model
         {
             int indexImage = random.Next(1, 6);
             string imagePath = $"{Environment.CurrentDirectory}/Sprites/met{indexImage}.png";
-            int damageScore = random.Next(1, 10);
+            int damageScore = random.Next(1, 2);
             return new GameEnemy(damageScore, damageScore, imagePath);
         }
     }

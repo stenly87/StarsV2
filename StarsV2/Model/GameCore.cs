@@ -1,5 +1,6 @@
 ﻿using StarsV2.Interfaces;
 using System;
+using System.Numerics;
 
 namespace StarsV2.Model
 {
@@ -68,7 +69,7 @@ namespace StarsV2.Model
         private void MakeBullet(object sender, EventArgs e)
         {
             sound.ShootPlay();
-            Point bulletPosition = new Point
+            Vector2 bulletPosition = new Vector2
             {
                 X = player.Position.X + player.Width / 2,
                 Y = player.Position.Y

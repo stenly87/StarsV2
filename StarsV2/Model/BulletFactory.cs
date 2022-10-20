@@ -6,7 +6,7 @@ namespace StarsV2.Model
     {
         protected override IGameObject CreateEnemy()
         {
-            return new Bullet(20, 5);
+            return new Bullet(5, 20);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace StarsV2.Model
         DispatcherTimer gameTimer = new DispatcherTimer();
         public void Init(Action action)
         {
-            gameTimer.Interval = TimeSpan.FromMilliseconds(20);
+            gameTimer.Interval = TimeSpan.FromMilliseconds(50);
             gameTimer.Tick += (o,e) => action();
         }
 

@@ -1,12 +1,15 @@
 ﻿using StarsV2.Model;
+using System.Numerics;
 
 namespace StarsV2.Interfaces
 {
     internal interface IGameObject
     {
-        Point Position { get; set; }
+        MoveDirection Direction { get; set; }
+        Vector2 Position { get; set; }
         int Width { get; }
-        int Heigth { get; }
-        bool IsOnField { get; }
+        int Height { get; }
+        bool IsOnField { get; set; }
+        Vector2 Speed { get; }
     }
 }

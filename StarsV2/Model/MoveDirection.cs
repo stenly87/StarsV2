@@ -10,6 +10,8 @@ namespace StarsV2
     {
         Stay,
         MoveLeft,
-        MoveRight
+        MoveRight,
+        MoveUp,
+        MoveDown
     }
 }

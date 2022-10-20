@@ -20,14 +20,35 @@ namespace StarsV2.View
     /// </summary>
     public partial class PageGame : Page
     {
-        private readonly GameUI gameUI;
+        private readonly GameUIWPF gameUI;
 
-        internal PageGame(GameUI gameUI)
+        internal PageGame(GameUIWPF gameUI)
         {
             InitializeComponent();
             this.gameUI = gameUI;
 
             gameUI.SetCanvas(mainCanvas);
+            mainCanvas.Focus();
+        }
+
+        private void GameUI_OnMessage(object sender, string e)
+        {
+            message.Text = e;
+        }
+
+        private void onKeyUp(object sender, KeyEventArgs e)
+        {
+            gameUI.PressKey(e.Key, false);
+        }
+
+        private void onKeyDown(object sender, KeyEventArgs e)
+        {
+            gameUI.PressKey(e.Key, true);
+        }
+
+        private void onMouseClick(object sender, MouseButtonEventArgs e)
+        {
+            gameUI.PressKey(Key.Space, true);
         }
     }
 }

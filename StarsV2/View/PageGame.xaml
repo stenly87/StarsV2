@@ -4,10 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:StarsV2.View"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageGame">
-    <Canvas Name="mainCanvas">
-        
-    </Canvas>
+      mc:Ignorable="d">
+    <Grid>
+        <Canvas Name="mainCanvas" Focusable="True" KeyUp="onKeyUp" KeyDown="onKeyDown" MouseLeftButtonDown="onMouseClick">
+
+        </Canvas>
+        <TextBlock Name="message" FontSize="15"/>
+    </Grid>
 </Page>

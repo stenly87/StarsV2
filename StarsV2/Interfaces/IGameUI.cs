@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 
 namespace StarsV2.Interfaces
 {
@@ -10,5 +11,6 @@ namespace StarsV2.Interfaces
         void SetLevel(int level);
         void Init(IGameController controller, IGameField gameField, IGameScoreManager gameScoreManager);
         void ShowGameOver();
+        void PressKey(Key key, bool pressed);
     }
 }

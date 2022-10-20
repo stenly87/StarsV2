@@ -18,5 +18,8 @@ namespace StarsV2.Interfaces
 
         int Width { get; set; }
         int Height { get; set; }
+
+        void SetDrawObjectAction(Action<IGameObject> drawObject);
+        void SetClearDrawObjectAction(Action<IGameObject> clearDrawObject);
     }
 }
